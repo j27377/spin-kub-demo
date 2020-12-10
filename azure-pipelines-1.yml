@@ -13,7 +13,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'e85e39ff-6fe9-47a4-af8e-5e05f84fad36'
   imageRepository: 'devopsheroes.azurecr.io'
-  containerRegistry: 'docker/nginx/devopsheroes'
+  containerRegistry: 'hellworld'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'devopsheroes30968733-auth'
