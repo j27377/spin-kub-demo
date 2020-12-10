@@ -44,19 +44,29 @@ stages:
     - upload: manifests
       artifact: manifests
 
-- task: Kubernetes@0
-  displayName: 'Set Canary Image'
-  inputs:
-    kubernetesServiceConnection: 'j27377spinkubdemo.spinnaker'
-    namespace: default
-    command: set
-    arguments: 'image $(containerRegistry)/$(imageRepository):$(tag)  --record'
+jobs:
+  - deployment: Deploy
+    displayName: Canary
+    pool:
+      vmImage: $(vmImageName)
+    environment: 'j27377spinkubdemo.spinnaker'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: Kubernetes@0
+            displayName: 'Set Canary Image'
+            inputs:
+              kubernetesServiceConnection: 'j27377spinkubdemo.spinnaker'
+              namespace: default
+              command: set
+              arguments: 'image $(containerRegistry)/$(imageRepository):$(tag)  --record'
 
-- task: Kubernetes@0
-  displayName: 'Scale Canary 1'
-  inputs:
-    kubernetesServiceConnection: 'wherefore-aks'
-    namespace: default
-    command: scale
-    arguments: 'deployments/api-canary --replicas=1'
-    
+          - task: Kubernetes@0
+            displayName: 'Scale Canary 1'
+            inputs:
+              kubernetesServiceConnection: 'wherefore-aks'
+              namespace: default
+              command: scale
+              arguments: 'deployments/api-canary --replicas=1'
+              
