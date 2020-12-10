@@ -7,10 +7,12 @@ spec:
   selector:
     matchLabels:
       app: jspinkubdemo
+      track: stable
   template:
     metadata:
       labels:
         app: jspinkubdemo 
+        track: stable
     spec:
       containers:
         - name: jspinkubdemo 
