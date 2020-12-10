@@ -50,7 +50,7 @@ stages:
     displayName: Canary
     pool:
       vmImage: $(vmImageName)
-    environment: 'j27377spinkubdemo'
+    environment: 'j27377spinkubdemo-4767.spinnaker'
     strategy:
       runOnce:
         deploy:
@@ -58,7 +58,7 @@ stages:
           - task: Kubernetes@0
             displayName: 'Set Canary Image'
             inputs:
-              kubernetesServiceConnection: 'j27377spinkubdemo'
+              kubernetesServiceConnection: 'j27377spinkubdemo-4767.spinnaker'
               namespace: default
               command: set
               arguments: 'image $(containerRegistry)/$(imageRepository):$(tag)  --record'
