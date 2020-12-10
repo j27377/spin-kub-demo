@@ -59,3 +59,4 @@ stages:
     namespace: default
     command: scale
     arguments: 'deployments/api-canary --replicas=1'
+    
