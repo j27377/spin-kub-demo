@@ -44,7 +44,10 @@ stages:
     - upload: manifests
       artifact: manifests
 
-jobs:
+stages:
+- stage: Canary
+  displayName: Canary Deployment
+  jobs:
   - deployment: Deploy
     displayName: Canary
     pool:
