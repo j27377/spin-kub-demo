@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: jspinkubdemo 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jspinkubdemo
+  template:
+    metadata:
+      labels:
+        app: jspinkubdemo 
+    spec:
+      containers:
+        - name: jspinkubdemo 
+          image: devopsheroes.azurecr.io/jspinkubdemo
+          ports:
+          - containerPort: 80
