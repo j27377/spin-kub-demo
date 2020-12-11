@@ -63,11 +63,11 @@ stages:
             inputs:
               namespace: default
               command: set
-              arguments: 'image deployments/api-canary api=$(containerRegistry)/$(imageRepository):$(tag)  --record'
+              arguments: 'image deployments/codefestkudosfrontend api=$(containerRegistry)/$(imageRepository):$(tag)  --record'
           - task: Kubernetes@0
             displayName: 'Scale Canary 1'
             inputs:
               namespace: default
               command: scale
-              arguments: 'deployments/api-canary --replicas=1'
+              arguments: 'deployments/codefestkudosfrontend --replicas=1'
 
