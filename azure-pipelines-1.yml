@@ -63,11 +63,11 @@ stages:
             inputs:
               namespace: default
               command: set
-              arguments: 'image deployments jspinkubdemo-canary api=$(containerRegistry)/$(imageRepository):$(tag)  --record'
+              arguments: 'image deployment jspinkubdemo-canary api=$(containerRegistry)/$(imageRepository):$(tag)  --record'
           - task: Kubernetes@0
             displayName: 'Scale Canary 1'
             inputs:
               namespace: default
               command: scale
-              arguments: 'deployments jspinkubdemo-canary --replicas=1'
+              arguments: 'deployment jspinkubdemo-canary --replicas=1'
 
